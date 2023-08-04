@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/myWhite"
+    tools:context=".fragments.addFragments.BookDetailsFragment">
+
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start"
+        android:text="Yeni kitabımız için kalan birkaç yeri daha dolduralım."
+        android:textColor="@color/darkGreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:text="Kitap detayları"
+        android:textColor="@color/darkGreen"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/deleteBooksButton"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/writer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputSelf"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/darkGreen"
+        app:boxStrokeColor="@color/darkGreen"
+        app:errorEnabled="true"
+        app:helperText="@string/required_String"
+        app:helperTextTextColor="#0F9C16"
+        app:hintTextColor="@color/darkGreen"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addSelfBookTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/book_name"
+            android:inputType="text"
+            android:maxLength="55"
+            android:textColor="@color/darkGreen"
+            android:textColorHint="@color/darkGreen" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/darkGreen"
+        app:boxStrokeColor="@color/darkGreen"
+        app:errorEnabled="true"
+        app:helperText="@string/required_String"
+        app:helperTextTextColor="#0F9C16"
+        app:hintTextColor="@color/darkGreen"
+        app:layout_constraintBottom_toTopOf="@+id/numberOfPagesLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputSelf"
+        app:startIconDrawable="@drawable/ico_pencil"
+        app:startIconTint="@null">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addSelfAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/author"
+            android:inputType="text"
+            android:maxLength="30"
+            android:textColor="@color/darkGreen"
+            android:textColorHint="@color/darkGreen" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/numberOfPagesLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/darkGreen"
+        app:boxStrokeColor="@color/darkGreen"
+        app:helperText="@string/required_String"
+        app:helperTextTextColor="#0F9C16"
+        app:hintTextColor="@color/darkGreen"
+        app:layout_constraintBottom_toTopOf="@+id/finishedPageSelfLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:startIconDrawable="@drawable/ico_page"
+        app:startIconTint="@null">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/numberOfPagesTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/number_of_pages"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textColor="@color/darkGreen"
+            android:textColorHint="@color/darkGreen" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateOfFinishLayoutSelf"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/darkGreen"
+        android:visibility="invisible"
+        app:boxStrokeColor="@color/darkGreen"
+        app:errorEnabled="true"
+        app:helperText="@string/optional_helper"
+        app:helperTextTextColor="#03A9F4"
+        app:hintTextColor="@color/darkGreen"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBooksButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberOfPagesLayout"
+        app:startIconDrawable="@drawable/ico_publishdate"
+        app:startIconTint="@null">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateOfFinishTxtSelf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/end_date"
+            android:inputType="none"
+            android:text="@string/example_Date"
+            android:textColor="@color/darkGreen"
+            android:textColorHint="@color/darkGreen" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/finishedPageSelfLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/darkGreen"
+        android:visibility="invisible"
+        app:boxStrokeColor="@color/darkGreen"
+        app:helperText="@string/required_String"
+        app:helperTextTextColor="#0F9C16"
+        app:hintTextColor="@color/darkGreen"
+        app:startIconDrawable="@drawable/ico_read_page"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBooksButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberOfPagesLayout"
+        app:startIconTint="@null">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/readPageCountSelf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/number_of_pages_read"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textColor="@color/darkGreen"
+            android:textColorHint="@color/darkGreen" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/noteLayoutSelf"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="@color/darkGreen"
+        android:visibility="invisible"
+        app:boxStrokeColor="@color/darkGreen"
+        app:counterEnabled="true"
+        app:counterMaxLength="250"
+        app:counterTextColor="@color/darkGreen"
+        app:errorEnabled="true"
+        app:helperText="@string/optional_helper"
+        app:helperTextTextColor="#00BCD4"
+        app:hintTextColor="@color/darkGreen"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBooksButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberOfPagesLayout"
+        app:startIconDrawable="@drawable/ico_pencil"
+        app:startIconTint="@null">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/noteEditTxtSelf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/about_the_book"
+            android:inputType="text"
+            android:maxLength="250"
+            android:textColor="@color/darkGreen"
+            android:textColorHint="@color/darkGreen" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCompleteSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="45dp"
+        android:src="@drawable/ico_complete"
+        app:backgroundTint="@color/darkTeal"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="56dp"
+        app:tint="@null"
+        app:useCompatPadding="false" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

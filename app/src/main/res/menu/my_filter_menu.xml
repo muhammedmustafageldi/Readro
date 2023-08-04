@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_alphabetical"
+        android:title="Alfabetik sıra" />
+
+    <item
+        android:id="@+id/menu_last_week"
+        android:title="Son hafta okunanlar" />
+
+    <item
+        android:id="@+id/menu_last_month"
+        android:title="Son ay okunanlar" />
+
+    <item
+        android:id="@+id/menu_none_filter"
+        android:title="Filtreleri kaldır" />
+</menu>

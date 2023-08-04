@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.swanky.readro.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_finishedBooksFragment"
+            app:destination="@id/finishedBooksFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_requestedFragment"
+            app:destination="@id/requestedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_nowReadFragment"
+            app:destination="@id/nowReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.swanky.readro.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_setBackgroundFragment"
+            app:destination="@id/setBackgroundFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.swanky.readro.fragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/finishedBooksFragment"
+        android:name="com.swanky.readro.fragments.FinishedBooksFragment"
+        android:label="fragment_finished_books"
+        tools:layout="@layout/fragment_finished_books" />
+    <fragment
+        android:id="@+id/requestedFragment"
+        android:name="com.swanky.readro.fragments.RequestedFragment"
+        android:label="fragment_requested"
+        tools:layout="@layout/fragment_requested" />
+    <fragment
+        android:id="@+id/nowReadFragment"
+        android:name="com.swanky.readro.fragments.NowReadFragment"
+        android:label="fragment_now_read"
+        tools:layout="@layout/fragment_now_read" >
+        <action
+            android:id="@+id/action_nowReadFragment_to_readRoomFragment"
+            app:destination="@id/readRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/readRoomFragment"
+        android:name="com.swanky.readro.fragments.ReadRoomFragment"
+        android:label="fragment_read_room"
+        tools:layout="@layout/fragment_read_room" >
+        <argument
+            android:name="NowReadObject"
+            app:argType="com.swanky.readro.models.roomDbModel.NowRead" />
+    </fragment>
+    <fragment
+        android:id="@+id/setBackgroundFragment"
+        android:name="com.swanky.readro.fragments.SetBackgroundFragment"
+        android:label="fragment_set_background"
+        tools:layout="@layout/fragment_set_background" />
+</navigation>

@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">Readro</string>
+    <string name="requestUrlLastPart"><![CDATA[&maxResults=15&printType=books&fields=items(id,volumeInfo/title,volumeInfo/authors,volumeInfo/pageCount,volumeInfo/imageLinks(thumbnail),volumeInfo/publishedDate,volumeInfo/language)&key=AIzaSyAtZr5yf1V59krj1fh42JF9Fou-8PZxT-o]]></string>
+
+    <string-array name="steps">
+        <item>Kategori</item>
+        <item>Kapak</item>
+        <item>Detaylar</item>
+        <item>Tamamlandı</item>
+    </string-array>
+
+    <string name="homeString">Home</string>
+    <string name="searchString">Search</string>
+    <string name="settingsString">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="morningString">Good morning.</string>
+    <string name="afternoonString">Good afternoon.</string>
+    <string name="eveningString">Good evening.</string>
+    <string name="nightString">Goodnight.</string>
+    <string name="currentlyReadString">Currently read</string>
+    <string name="finishedBooksString">Finished books</string>
+    <string name="wishListString">Books i want</string>
+    <string name="readReminderString">Reading reminder</string>
+    <string name="searchHintString">Enter book name or ISBN</string>
+    <string name="darkModeString">Dark Mode</string>
+    <string name="rateUsString">Rate Us</string>
+    <string name="exportString">import or export</string>
+    <string name="setBgString">Set read mode background</string>
+    <string name="notificationSoundString">Notification sound</string>
+    <string name="lenguageString">Lenguage</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="read_reminder_title">Read Reminder</string>
+    <string name="languageString">Language: </string>
+    <string name="pageCountString">Page count: </string>
+    <string name="publishedDate">Published date: </string>
+    <string name="silentModeString">Selected Mode: Silent</string>
+    <string name="voiceModeString">Selected Mode: Voice</string>
+    <string name="addBookTitle">Add to your library the this book</string>
+    <string name="finished_Button_String">Finished</string>
+    <string name="requested_String">Requested</string>
+    <string name="now_read_string">Now Read</string>
+    <string name="about_the_book">About the book</string>
+    <string name="example_Date">01/01/2000</string>
+    <string name="end_date">End date</string>
+    <string name="optional_helper">Optional (Editable)</string>
+    <string name="number_of_pages_read">Pages Read</string>
+    <string name="required_String">* Required</string>
+    <string name="save">Save</string>
+    <string name="change_photo_String">Click on it to change the book photo.</string>
+    <string name="number_of_pages">Number of pages</string>
+    <string name="book_name">Book name</string>
+    <string name="add_book_info">Add this book to this category:</string>
+    <string name="permission_explanation">Permission required for gallery</string>
+    <string name="permission_button">Give</string>
+    <string name="galleryIntentErrorMessage">An error was encountered while selecting the photo.</string>
+    <string name="selectHourString">You must select a time to create a reminder.</string>
+    <string name="reminderCreated">Reminder created.</string>
+    <string name="reminderDeleted">Reminder is deleted</string>
+    <string name="alreadyExistReminder">There is already a reminder set for this time</string>
+    <string name="noReminderDeleted">No reminder to delete is set</string>
+    <string name="author">Author</string>
+    <string name="permission_explanation_camera">Permission required for gallery</string>
+    <string name="error_camera">An error occurred while taking a photo from the camera</string>
+    <string name="editable_helper">Editable</string>
+    <string name="pageSt">pages</string>
+    <string name="lastMonthTitle">Readings this month (</string>
+    <string name="lastWeekTitle">Readings this week (</string>
+    <string name="alphabeticalTitle">Alphabetical order (</string>
+    <string name="finishedBooksTitle">Finished Books (</string>
+    <string name="no_summary_txt">There is no summary about the book. But I am sure it is a good book if you have chosen it. 😊</string>
+    <string name="read_mode">Read Mode</string>
+    <string name="readModeTitle">Activating reading mode. Please select time and mode.</string>
+    <string name="readModeFocusDesc">(If you leave the app while in focus mode, the elapsed time is reset and no reward can be earned.)\nBut this mode gives more rewards.</string>
+    <string name="readModeFreeDesc">(Unlike Focus mode, you can exit the app while in this mode. Time continues to run in the background.\nBut this mode offers fewer rewards.</string>
+    <string name="free_mode">Free Mode</string>
+    <string name="focus_mode">Focus Mode</string>
+    <string name="_30_minute">30 Minute</string>
+    <string name="_15_minute">15 Minute</string>
+</resources>

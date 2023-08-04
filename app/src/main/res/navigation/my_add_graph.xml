@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_add_graph"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/bookDetailsFragment"
+        android:name="com.swanky.readro.fragments.addFragments.BookDetailsFragment"
+        android:label="fragment_book_details"
+        tools:layout="@layout/fragment_book_details" >
+        <action
+            android:id="@+id/action_bookDetailsFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+        <argument
+            android:name="selectedCategoryNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_bookDetailsFragment_to_completeSaveFragment"
+            app:destination="@id/completeSaveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.swanky.readro.fragments.addFragments.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.swanky.readro.fragments.addFragments.PhotoFragment"
+        android:label="fragment_photo"
+        tools:layout="@layout/fragment_photo" >
+        <action
+            android:id="@+id/action_photoFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment" />
+        <action
+            android:id="@+id/action_photoFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completeSaveFragment"
+        android:name="com.swanky.readro.fragments.addFragments.CompleteSaveFragment"
+        android:label="fragment_complete_save"
+        tools:layout="@layout/fragment_complete_save" />
+</navigation>
