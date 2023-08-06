@@ -99,6 +99,9 @@ public interface BooksDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insertReadingValues(ReadingValues readingValues);
 
+    @Delete
+    Completable deleteReadingValues(ReadingValues readingValues);
+
     //Background Items Transactions
     @Query("SELECT * FROM BackgroundItem")
     Flowable<List<BackgroundItem>> getBackgroundItems();

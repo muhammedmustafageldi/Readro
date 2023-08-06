@@ -34,11 +34,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class ReadRoomFragment extends Fragment {
 
     private FragmentReadRoomBinding binding;
-    private BooksDatabase database;
     private BooksDao dao;
     private CompositeDisposable compositeDisposable;
     private boolean focusMode = true;
-    private long timeRemaining;
     private int selectedTime;
     private NowRead nowRead;
 
@@ -65,8 +63,16 @@ public class ReadRoomFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        database = BooksDatabase.getInstance(requireContext());
+        init();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void init() {
+        //Init the database objects.
+        BooksDatabase database = BooksDatabase.getInstance(requireContext());
         dao = database.booksDao();
+        compositeDisposable = new CompositeDisposable();
+
 
         if (getArguments() != null) {
             ReadRoomFragmentArgs bundle = ReadRoomFragmentArgs.fromBundle(getArguments());
@@ -91,6 +97,7 @@ public class ReadRoomFragment extends Fragment {
         getBackground();
     }
 
+
     private void getBackground() {
         if (getActivity() != null) {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Background", Context.MODE_PRIVATE);
@@ -102,7 +109,6 @@ public class ReadRoomFragment extends Fragment {
             }
         }
     }
-
 
     private int calculatePercentage(int firstNumber, int secondNumber) {
         if (secondNumber == 0) {
@@ -149,12 +155,23 @@ public class ReadRoomFragment extends Fragment {
         });
     }
 
+    private void saveCurrentReading() {
+        ReadingValues readingValues = new ReadingValues(nowRead.id, selectedTime, System.currentTimeMillis(), focusMode);
+        compositeDisposable.add(dao.insertReadingValues(readingValues)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe());
+    }
+
     private void switchToReadingMode(long milliSeconds) {
+        //Save the currently reading book in the database.
+        saveCurrentReading();
+
+        //And start time timer.
         new CountDownTimer(milliSeconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeRemaining = millisUntilFinished;
-                updateTimerText();
+                updateTimerText(millisUntilFinished);
             }
 
             @Override
@@ -164,42 +181,20 @@ public class ReadRoomFragment extends Fragment {
         }.start();
     }
 
-    private void updateTimerText() {
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(timeRemaining);
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(timeRemaining) % 60;
+    private void updateTimerText(long millisUntilFinished) {
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60;
 
         String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         binding.readRoomTimerTxt.setText(timeFormatted);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (selectedTime != 0 && nowRead != null) {
-            compositeDisposable = new CompositeDisposable();
-            compositeDisposable.add(dao.insertReadingValues(new ReadingValues(
-                    nowRead.id,
-                    selectedTime,
-                    System.currentTimeMillis(),
-                    focusMode))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe());
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        compositeDisposable.add(dao.getSingleReadingValues()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());
-        
-    }
 
     @Override
     public void onDestroy() {
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
+        }
         super.onDestroy();
     }
 }

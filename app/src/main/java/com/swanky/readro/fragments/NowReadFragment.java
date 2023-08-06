@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.room.rxjava3.EmptyResultSetException;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,6 @@ import com.swanky.readro.roomdb.BooksDao;
 import com.swanky.readro.roomdb.BooksDatabase;
 import com.swanky.readro.service.CustomItemAnimator;
 import java.util.List;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -65,10 +66,27 @@ public class NowReadFragment extends Fragment {
         BooksDao dao = database.booksDao();
 
         compositeDisposable = new CompositeDisposable();
+
         compositeDisposable.add(dao.getAllNowRead()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(NowReadFragment.this::setRecyclerView));
+                .subscribe(
+                        this::setRecyclerView, // onSuccess
+                        throwable -> {
+                            // onError
+                            if (throwable instanceof EmptyResultSetException) {
+                                //No data in the database
+                                whenNoData();
+                            } else {
+                                System.out.println(throwable.getMessage());
+                            }
+                        }
+                ));
+    }
+
+    private void whenNoData() {
+        binding.nowReadRecycler.setVisibility(View.GONE);
+        binding.notFoundNowRead.setVisibility(View.VISIBLE);
     }
 
     private void setRecyclerView(List<NowRead> nowReads) {
@@ -87,7 +105,6 @@ public class NowReadFragment extends Fragment {
             adapter.notifyItemRemoved(position);
             adapter.notifyItemRangeChanged(position, nowReads.size());
         });
-
     }
 
     private void recyclerItemAnimation(RecyclerView recyclerView) {
