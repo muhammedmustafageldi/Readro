@@ -20,6 +20,8 @@ import com.swanky.readro.R;
 import com.swanky.readro.adapters.HomeItemsAdapter;
 import com.swanky.readro.databinding.FragmentHomeBinding;
 import com.swanky.readro.models.HomePageItem;
+import com.swanky.readro.models.roomDbModel.ReadingValues;
+import com.swanky.readro.service.ReadingController;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,6 +53,19 @@ public class HomeFragment extends Fragment {
 
         messageToUser();
         setHomeRecyclerAdapter(setHomeRecyclerItems());
+
+        new ReadingController(requireContext()).getReadingData(new ReadingController.ReadingCallback() {
+            @Override
+            public void onReadingDataAvailable(ReadingValues readingValues, long timeRemaining) {
+                System.out.println(readingValues.getId());
+                System.out.println(timeRemaining);
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                System.out.println("Herhangi bir kayıt yok!");
+            }
+        });
     }
 
     private void messageToUser() {

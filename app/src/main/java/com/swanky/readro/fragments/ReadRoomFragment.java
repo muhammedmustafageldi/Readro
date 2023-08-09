@@ -9,9 +9,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +21,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import com.swanky.readro.R;
 import com.swanky.readro.databinding.FragmentReadRoomBinding;
 import com.swanky.readro.models.roomDbModel.NowRead;
 import com.swanky.readro.models.roomDbModel.ReadingValues;
 import com.swanky.readro.roomdb.BooksDao;
 import com.swanky.readro.roomdb.BooksDatabase;
+
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -143,14 +148,14 @@ public class ReadRoomFragment extends Fragment {
         });
 
         button15min.setOnClickListener(view -> {
-            switchToReadingMode(900000);
             selectedTime = 15;
+            switchToReadingMode(900000);
             dialog.cancel();
         });
 
         button30min.setOnClickListener(view -> {
-            switchToReadingMode(1800000);
             selectedTime = 30;
+            switchToReadingMode(1800000);
             dialog.cancel();
         });
     }
