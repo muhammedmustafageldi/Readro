@@ -35,4 +35,7 @@ public class NowRead implements Serializable {
         this.pageCountRead = pageCountRead;
         this.image = image;
     }
+
+
+
 }

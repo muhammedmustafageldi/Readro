@@ -14,15 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        com.swanky.readro.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
-        assert navHostFragment != null;
-        NavigationUI.setupWithNavController(binding.bottomNavigationView,navHostFragment.getNavController());
-
         SharedPreferences sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         boolean nightMode = sharedPreferences.getBoolean("nightMode",false);
         if (nightMode){
@@ -30,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
         }else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+        super.onCreate(savedInstanceState);
 
+        com.swanky.readro.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
+        assert navHostFragment != null;
+        NavigationUI.setupWithNavController(binding.bottomNavigationView,navHostFragment.getNavController());
     }
 }

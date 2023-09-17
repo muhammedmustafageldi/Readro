@@ -19,6 +19,8 @@ import com.swanky.readro.fragments.NowReadFragmentDirections;
 import com.swanky.readro.models.roomDbModel.NowRead;
 import com.swanky.readro.roomdb.BooksDao;
 import com.swanky.readro.roomdb.BooksDatabase;
+import com.swanky.readro.service.ProgressBarAnimation;
+
 import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -70,6 +72,10 @@ public class NowReadAdapter extends RecyclerView.Adapter<NowReadAdapter.ViewHold
         holder.binding.nowReadPageTxt.setText("Completed pages: " + pageCountRead);
         holder.binding.nowReadProgressBar.setProgress(calculatedProgress);
         holder.binding.nowReadProgressTxt.setText("%" + calculatedProgress);
+
+        ProgressBarAnimation anim = new ProgressBarAnimation(holder.binding.nowReadProgressBar, 0, calculatedProgress);
+        anim.setDuration(1500);
+        holder.binding.nowReadProgressBar.startAnimation(anim);
 
         holder.itemView.setOnClickListener(view -> {
             NavDirections nowReadToReadRoom = NowReadFragmentDirections.actionNowReadFragmentToReadRoomFragment(nowReads.get(position));

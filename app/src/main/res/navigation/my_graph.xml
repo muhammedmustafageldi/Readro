@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_nowReadFragment"
             app:destination="@id/nowReadFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_readRoomFragment"
+            app:destination="@id/readRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -61,6 +64,15 @@
         <argument
             android:name="NowReadObject"
             app:argType="com.swanky.readro.models.roomDbModel.NowRead" />
+        <argument
+            android:name="timeRemaining"
+            app:argType="long"
+            android:defaultValue="0L" />
+        <argument
+            android:name="focusMode"
+            app:argType="boolean"
+            android:defaultValue="true"/>
+
     </fragment>
     <fragment
         android:id="@+id/setBackgroundFragment"

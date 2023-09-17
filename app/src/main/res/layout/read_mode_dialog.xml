@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="20dp"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:layout_height="match_parent">
+    android:layout_margin="20dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/lightBrown">
+            android:background="@color/myWhite">
 
 
             <TextView
@@ -27,11 +26,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
-
+                android:textColor="@color/darkGreen"
                 android:text="@string/read_mode"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -82,7 +82,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:text="@string/readModeTitle"
@@ -111,7 +111,7 @@
                     android:buttonTint="@color/darkGreen"
                     android:checked="true"
                     android:text="@string/focus_mode"
-                    android:textColor="@color/myWhite" />
+                    android:textColor="@color/lightBrown" />
 
                 <RadioButton
                     android:id="@+id/freeModeRadio"

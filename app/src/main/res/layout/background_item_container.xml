@@ -88,7 +88,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="5dp"
-                android:src="@drawable/try_coin" />
+                android:src="@drawable/readro_coin_32" />
 
         </LinearLayout>
 

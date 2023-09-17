@@ -29,7 +29,33 @@
             android:layout_marginBottom="15dp"
             android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="658dp" />
+            tools:layout_editor_absoluteY="658dp"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/notFoundFinished"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ico_notfound" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="No finished book found at this time."
+                android:textColor="@color/darkGreen"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView

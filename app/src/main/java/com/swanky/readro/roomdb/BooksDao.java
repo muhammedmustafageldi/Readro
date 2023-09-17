@@ -12,7 +12,9 @@ import com.swanky.readro.models.roomDbModel.FinishedBooks;
 import com.swanky.readro.models.roomDbModel.NowRead;
 import com.swanky.readro.models.roomDbModel.ReadingValues;
 import com.swanky.readro.models.roomDbModel.RequestedBooks;
+
 import java.util.List;
+
 import io.reactivex.Single;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
@@ -33,13 +35,13 @@ public interface BooksDao {
 
     //SINGLE QUERY'S
     @Query("SELECT * FROM NowRead WHERE id = :id")
-    Single<NowRead> getSingleNowRead(int id);
+    io.reactivex.rxjava3.core.Single<NowRead> getSingleNowRead(int id);
 
     @Query("SELECT * FROM FinishedBooks WHERE id = :id")
-    Single<FinishedBooks> getSingleFinishedBooks(int id);
+    io.reactivex.rxjava3.core.Single<FinishedBooks> getSingleFinishedBooks(int id);
 
     @Query("SELECT * FROM RequestedBooks WHERE id = :id")
-    Single<RequestedBooks> getSingleRequestedBooks(int id);
+    io.reactivex.rxjava3.core.Single<RequestedBooks> getSingleRequestedBooks(int id);
 
     //ASCENDING ORDER QUERY
     @Query("SELECT * FROM FinishedBooks ORDER BY endDate ASC")

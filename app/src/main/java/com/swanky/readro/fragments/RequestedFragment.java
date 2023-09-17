@@ -38,7 +38,6 @@ public class RequestedFragment extends Fragment {
     private BottomNavigationView bottomNavigationView;
     private BooksDao dao;
     private CompositeDisposable compositeDisposable;
-    private List<RequestedBooks> requestedBooks;
     private RequestedBooksAdapter requestedBooksAdapter;
 
 
@@ -75,11 +74,22 @@ public class RequestedFragment extends Fragment {
         compositeDisposable.add(dao.getAllRequested()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(RequestedFragment.this::initRecycler));
+                .subscribe(
+                        requestedBooks -> {
+                            if (requestedBooks.size() == 0) {
+                                whenNoData();
+                            } else {
+                                initRecycler(requestedBooks);
+                            }
+                        }));
+    }
+
+    private void whenNoData() {
+        binding.requestedRecycler.setVisibility(View.GONE);
+        binding.notFoundRequested.setVisibility(View.VISIBLE);
     }
 
     private void initRecycler(List<RequestedBooks> requestedBooks) {
-        this.requestedBooks = requestedBooks;
         RecyclerView recyclerView = binding.requestedRecycler;
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setHasFixedSize(true);
@@ -114,6 +124,8 @@ public class RequestedFragment extends Fragment {
         bottomNavigationView.setVisibility(View.VISIBLE);
         bottomNavigationView = null;
         compositeDisposable.clear();
-        requestedBooksAdapter.clearMemory();
+        if (requestedBooksAdapter != null){
+            requestedBooksAdapter.clearMemory();
+        }
     }
 }

@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.room.rxjava3.EmptyResultSetException;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,17 +69,13 @@ public class NowReadFragment extends Fragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        this::setRecyclerView, // onSuccess
-                        throwable -> {
-                            // onError
-                            if (throwable instanceof EmptyResultSetException) {
-                                //No data in the database
+                        nowReads -> {
+                            if (nowReads.size() == 0) {
                                 whenNoData();
                             } else {
-                                System.out.println(throwable.getMessage());
+                                setRecyclerView(nowReads);
                             }
-                        }
-                ));
+                        }));
     }
 
     private void whenNoData() {

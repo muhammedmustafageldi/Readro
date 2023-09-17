@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.swanky.readro.activities.ReminderActivity;
 import com.swanky.readro.databinding.RecyclerRowHomeItemsBinding;
 import com.swanky.readro.fragments.HomeFragmentDirections;
@@ -40,9 +38,6 @@ public class HomeItemsAdapter extends RecyclerView.Adapter<HomeItemsAdapter.View
         holder.binding.homeItemsNameTxt.setText(homePageItems.get(position).getItemName());
         holder.binding.homeItemsImageView.setImageResource(homePageItems.get(position).getItemIcon());
 
-        YoYo.with(Techniques.FadeInLeft)
-                .duration(800)
-                .playOn(holder.itemView);
 
         switch (position) {
             case 0:

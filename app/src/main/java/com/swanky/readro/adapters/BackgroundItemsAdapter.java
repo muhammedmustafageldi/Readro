@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.swanky.readro.R;
 import com.swanky.readro.databinding.BackgroundItemContainerBinding;
 import com.swanky.readro.models.roomDbModel.BackgroundItem;

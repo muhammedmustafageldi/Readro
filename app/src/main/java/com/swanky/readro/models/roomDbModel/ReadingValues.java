@@ -13,8 +13,8 @@ public class ReadingValues {
     @ColumnInfo(name = "nowReadId")
     private int nowReadId;
 
-    @ColumnInfo(name = "selectedTime")
-    private int selectedTime;
+    @ColumnInfo(name = "timeRemaining")
+    private long timeRemaining;
 
     @ColumnInfo(name = "startTime")
     private long startTime;
@@ -22,9 +22,9 @@ public class ReadingValues {
     @ColumnInfo(name = "focusMode")
     private boolean focusMode;
 
-    public ReadingValues(int nowReadId, int selectedTime, long startTime, boolean focusMode) {
+    public ReadingValues(int nowReadId, long timeRemaining, long startTime, boolean focusMode) {
         this.nowReadId = nowReadId;
-        this.selectedTime = selectedTime;
+        this.timeRemaining = timeRemaining;
         this.startTime = startTime;
         this.focusMode = focusMode;
     }
@@ -45,12 +45,12 @@ public class ReadingValues {
         this.nowReadId = nowReadId;
     }
 
-    public int getSelectedTime() {
-        return selectedTime;
+    public long getTimeRemaining() {
+        return timeRemaining;
     }
 
-    public void setSelectedTime(int selectedTime) {
-        this.selectedTime = selectedTime;
+    public void setTimeRemaining(long timeRemaining) {
+        this.timeRemaining = timeRemaining;
     }
 
     public long getStartTime() {

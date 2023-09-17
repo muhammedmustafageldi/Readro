@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/readRoomConstraint"
@@ -50,10 +51,10 @@
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:background="@drawable/trans_button_bg"
+        android:gravity="center"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="00:00"
-        android:gravity="center"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,18 +64,44 @@
 
     <Button
         android:id="@+id/readRoomButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/trans_button_bg"
         android:padding="10dp"
         android:text="Okuma Moduna Geç"
-        android:textStyle="bold"
-        android:textSize="17sp"
         android:textAllCaps="false"
         android:textColor="@color/darkGreen"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:visibility="visible"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readRoomTimerTxt" />
+
+    <Button
+        android:id="@+id/giveUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/trans_button_bg"
+        android:drawableEnd="@drawable/ico_give_up"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Give up"
+        android:textAllCaps="false"
+        android:textColor="@color/darkGreen"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/readRoomTimerTxt" />
 
@@ -102,5 +129,6 @@
             tools:layout_editor_absoluteY="222dp" />
 
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

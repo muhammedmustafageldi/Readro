@@ -3,6 +3,7 @@ package com.swanky.readro.fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
@@ -10,13 +11,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.swanky.readro.R;
 import com.swanky.readro.activities.MainActivity;
 import com.swanky.readro.adapters.FinishedBooksAdapter;
@@ -25,9 +29,11 @@ import com.swanky.readro.models.roomDbModel.FinishedBooks;
 import com.swanky.readro.roomdb.BooksDao;
 import com.swanky.readro.roomdb.BooksDatabase;
 import com.swanky.readro.service.CustomItemAnimator;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -46,7 +52,6 @@ public class FinishedBooksFragment extends Fragment {
     private List<FinishedBooks> lastMonthList;
     private boolean lastWeekFilter = false;
     private boolean lastMonthFilter = false;
-
 
 
     public FinishedBooksFragment() {
@@ -81,63 +86,75 @@ public class FinishedBooksFragment extends Fragment {
         binding.searchViewFinished.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (lastWeekFilter){
+                if (lastWeekFilter) {
                     searchBooks(lastWeekList, query);
-                }else if (lastMonthFilter){
+                } else if (lastMonthFilter) {
                     searchBooks(lastMonthList, query);
-                }else{
-                    searchBooks(finishedBooks, query);
+                } else {
+                    if (finishedBooks != null) {
+                        searchBooks(finishedBooks, query);
+                    } else {
+                        Snackbar.make(binding.searchViewFinished, "Aranacak veri bulunmuyor.", Snackbar.LENGTH_SHORT).show();
+                        binding.searchViewFinished.clearFocus();
+                    }
                 }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
-                if (lastWeekFilter){
+                if (lastWeekFilter) {
                     searchBooks(lastWeekList, query);
-                }else if (lastMonthFilter){
+                } else if (lastMonthFilter) {
                     searchBooks(lastMonthList, query);
-                }else{
-                    searchBooks(finishedBooks, query);
+                } else {
+                    if (finishedBooks != null) {
+                        searchBooks(finishedBooks, query);
+                    } else {
+                        Snackbar.make(binding.searchViewFinished, "Aranacak veri bulunmuyor.", Snackbar.LENGTH_SHORT).show();
+                        binding.searchViewFinished.clearFocus();
+                    }
                 }
                 return true;
             }
         });
 
         binding.filterTxt.setOnClickListener(view2 -> {
-            PopupMenu popupMenu = new PopupMenu(requireContext(), view2);
-            popupMenu.setGravity(Gravity.END);
-            popupMenu.getMenuInflater().inflate(R.menu.my_filter_menu, popupMenu.getMenu());
-            popupMenu.show();
+            if (finishedBooks == null) {
+                Snackbar.make(view2, "Filtrelenecek veri bulunmuyor.", Snackbar.LENGTH_SHORT).show();
+            } else {
+                PopupMenu popupMenu = new PopupMenu(requireContext(), view2);
+                popupMenu.setGravity(Gravity.END);
+                popupMenu.getMenuInflater().inflate(R.menu.my_filter_menu, popupMenu.getMenu());
+                popupMenu.show();
 
 
-            popupMenu.setOnMenuItemClickListener(item -> {
-                int itemId = item.getItemId();
-                if (itemId == R.id.menu_alphabetical) {
-                    alphabeticalSort(finishedBooks);
-                    return true;
-                } else if (itemId == R.id.menu_last_week) {
-                    lastWeekFilter(finishedBooks);
-                    lastWeekFilter = true;
-                    lastMonthFilter = false;
-                    return true;
-                } else if (itemId == R.id.menu_last_month) {
-                    lastMonthFilter(finishedBooks);
-                    lastMonthFilter = true;
-                    lastWeekFilter = false;
-                    return true;
-                } else if (itemId == R.id.menu_none_filter) {
-                    finishedBooksAdapter.setFilteredList(finishedBooks);
-                    lastWeekFilter = false;
-                    lastMonthFilter = false;
-                    binding.finishedTitle.setText(getString(R.string.finishedBooksTitle) + finishedBooks.size() + ")");
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-
-
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    int itemId = item.getItemId();
+                    if (itemId == R.id.menu_alphabetical) {
+                        alphabeticalSort(finishedBooks);
+                        return true;
+                    } else if (itemId == R.id.menu_last_week) {
+                        lastWeekFilter(finishedBooks);
+                        lastWeekFilter = true;
+                        lastMonthFilter = false;
+                        return true;
+                    } else if (itemId == R.id.menu_last_month) {
+                        lastMonthFilter(finishedBooks);
+                        lastMonthFilter = true;
+                        lastWeekFilter = false;
+                        return true;
+                    } else if (itemId == R.id.menu_none_filter) {
+                        finishedBooksAdapter.setFilteredList(finishedBooks);
+                        lastWeekFilter = false;
+                        lastMonthFilter = false;
+                        binding.finishedTitle.setText(getString(R.string.finishedBooksTitle) + finishedBooks.size() + ")");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            }
         });
     }
 
@@ -146,7 +163,19 @@ public class FinishedBooksFragment extends Fragment {
         compositeDisposable.add(dao.getAllFinished()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(FinishedBooksFragment.this::initRecycler));
+                .subscribe(
+                        finishedBooks -> {
+                            if (finishedBooks.size() == 0) {
+                                whenNoData();
+                            } else {
+                                initRecycler(finishedBooks);
+                            }
+                        }));
+    }
+
+    private void whenNoData() {
+        binding.finishedBooksRecycler.setVisibility(View.GONE);
+        binding.notFoundFinished.setVisibility(View.VISIBLE);
     }
 
     @SuppressLint("SetTextI18n")
@@ -167,15 +196,15 @@ public class FinishedBooksFragment extends Fragment {
                 filteredList.remove(book);
             }
             // If the sort was made
-            if (alphabeticList != null){
+            if (alphabeticList != null) {
                 alphabeticList.remove(book);
             }
             //If the filter was made
-            if (lastWeekList != null){
+            if (lastWeekList != null) {
                 lastWeekList.remove(book);
             }
             //If the filter was made
-            if (lastMonthList != null){
+            if (lastMonthList != null) {
                 lastMonthList.remove(book);
             }
 
@@ -204,7 +233,7 @@ public class FinishedBooksFragment extends Fragment {
         alphabeticList = theListShown;
         alphabeticList.sort(Comparator.comparing(FinishedBooks::getTitle, String.CASE_INSENSITIVE_ORDER));
         finishedBooksAdapter.setFilteredList(alphabeticList);
-        binding.finishedTitle.setText(getString(R.string.alphabeticalTitle)+alphabeticList.size()+ ")");
+        binding.finishedTitle.setText(getString(R.string.alphabeticalTitle) + alphabeticList.size() + ")");
     }
 
     @SuppressLint("SetTextI18n")
@@ -228,7 +257,7 @@ public class FinishedBooksFragment extends Fragment {
             }
         }
         finishedBooksAdapter.setFilteredList(lastWeekList);
-        binding.finishedTitle.setText(getString(R.string.lastWeekTitle)+lastWeekList.size()+ ")");
+        binding.finishedTitle.setText(getString(R.string.lastWeekTitle) + lastWeekList.size() + ")");
     }
 
 
@@ -253,7 +282,7 @@ public class FinishedBooksFragment extends Fragment {
             }
         }
         finishedBooksAdapter.setFilteredList(lastMonthList);
-        binding.finishedTitle.setText(getString(R.string.lastMonthTitle)+lastMonthList.size()+ ")");
+        binding.finishedTitle.setText(getString(R.string.lastMonthTitle) + lastMonthList.size() + ")");
     }
 
 

@@ -20,7 +20,6 @@ public class SendNotification {
     }
 
     public void sendReminderNotification(){
-
         if (ReminderActivity.isItSet){
             //Random quotes
 

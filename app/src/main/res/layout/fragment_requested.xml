@@ -25,7 +25,33 @@
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/notFoundRequested"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ico_notfound" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="There are currently no books on the wishlist."
+                android:textColor="@color/darkGreen"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
