@@ -90,4 +90,8 @@ dependencies {
     //Scan code library
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
+    // PageTransformer
+    implementation 'com.wajahatkarim:easyflipviewpager:2.0.1'
+
+
 }

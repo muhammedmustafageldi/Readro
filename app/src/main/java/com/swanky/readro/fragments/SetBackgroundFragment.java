@@ -2,31 +2,24 @@ package com.swanky.readro.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.swanky.readro.R;
 import com.swanky.readro.activities.MainActivity;
 import com.swanky.readro.adapters.BackgroundItemsAdapter;
 import com.swanky.readro.databinding.FragmentSetBackgroundBinding;
-import com.swanky.readro.models.Book;
 import com.swanky.readro.models.roomDbModel.BackgroundItem;
 import com.swanky.readro.roomdb.BooksDao;
 import com.swanky.readro.roomdb.BooksDatabase;
-
+import com.wajahatkarim3.easyflipviewpager.CardFlipPageTransformer2;
 import java.util.List;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -83,14 +76,9 @@ public class SetBackgroundFragment extends Fragment {
         viewPager2.setClipChildren(false);
         viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
 
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer((page, position) -> {
-            float r = 1 - Math.abs(position);
-            page.setScaleY(0.85f + r * 0.15f);
-        });
-
-        viewPager2.setPageTransformer(compositePageTransformer);
+        CardFlipPageTransformer2 cardFlipPageTransformer = new CardFlipPageTransformer2();
+        cardFlipPageTransformer.setScalable(false);
+        viewPager2.setPageTransformer(cardFlipPageTransformer);
     }
 
     @Override
